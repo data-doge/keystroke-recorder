@@ -5,22 +5,26 @@ class KeystrokeRecorder {
   constructor () {
     this.json = []
     this.startTime = null
+    this.recording = false
   }
 
   record () {
+    this.stop()
+    this.json = []
     this.startTime = Date.now()
+    this.recording = true
     var self = this
     $(document).keydown(function (e) {
-      let data = {
-        keyCode: e.which,
-        key: e.key,
-        time: Date.now() - self.startTime
-      }
-      self.json.push(data)
+      self.json.push({ keyCode: e.which, key: e.key, time: self.timeElapsed() })
     })
   }
 
+  timeElapsed () {
+    return Date.now() - this.startTime
+  }
+
   stop () {
+    this.recording = false
     $(document).off('keydown')
   }
 
