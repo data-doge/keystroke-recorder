@@ -41,13 +41,34 @@ return milliseconds since recording started
 
 #### properties
 
-##### `startTime`
-
-time that last recording started at
-
 ##### `json`
 
 returns json data for last keystroke recording
+
+```json
+{
+    521: {
+        keyCode: 65,
+        key: "a"
+    },
+    613: {
+        keyCode: 83,
+        key: "s"
+    },
+    669: {
+        keyCode: 68,
+        key: "d"
+    },
+    761: {
+        keyCode: 70,
+        key: "f"
+    }
+}
+```
+
+##### `startTime`
+
+time that last recording started at
 
 ##### `recording`
 
