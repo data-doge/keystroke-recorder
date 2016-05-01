@@ -22,3 +22,33 @@ $('#stop').click(() => {
 })
 
 ```
+
+### API
+
+#### methods
+
+##### `record()`
+
+starts collecting keystroke data as json
+
+##### `stop()`
+
+stops collecting keystroke data
+
+##### `timeElapsed()`
+
+return milliseconds since recording started
+
+#### properties
+
+##### `startTime`
+
+time that last recording started at
+
+##### `json`
+
+returns json data for last keystroke recording
+
+##### `recording`
+
+boolean indicating whether `keystrokeRecorder` is recording or not
