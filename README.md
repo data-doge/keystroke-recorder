@@ -10,7 +10,10 @@ records keystrokes -- key, keyCode, and relative timestamp as json. please use t
 
 ```js
 import $ from 'jquery'
-import keystrokeRecorder from 'keystroke-recorder'
+import KeystrokeRecorder from 'keystroke-recorder'
+var keystrokeRecorder = new KeystrokeRecorder({
+  omittedKeys: ['Tab', 'Meta', 'Control', 'Alt', 'Shift']
+})
 
 $('#record').click(() => {
   keystrokeRecorder.record()
@@ -24,6 +27,12 @@ $('#stop').click(() => {
 ```
 
 ### API
+
+#### options
+
+##### `omittedKeys`
+
+an array of keys to be ignored during recording. _default: []_
 
 #### methods
 

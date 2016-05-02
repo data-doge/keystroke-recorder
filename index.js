@@ -1,8 +1,10 @@
 import $ from 'jquery'
+import includes from 'lodash.includes'
 
 class KeystrokeRecorder {
 
-  constructor () {
+  constructor (opts = {}) {
+    this.omittedKeys = opts.omittedKeys || []
     this.json = []
     this.startTime = null
     this.recording = false
@@ -15,8 +17,10 @@ class KeystrokeRecorder {
     this.recording = true
     var self = this
     $(document).keydown(function (e) {
-      var ms = self.timeElapsed()
-      self.json.push({ keyCode: e.which, key: e.key, ms: ms })
+      if (!includes(self.omittedKeys, e.key)) {
+        var ms = self.timeElapsed()
+        self.json.push({ keyCode: e.which, key: e.key, ms: ms })
+      }
     })
   }
 
@@ -31,4 +35,4 @@ class KeystrokeRecorder {
 
 }
 
-export default new KeystrokeRecorder
+export default KeystrokeRecorder
