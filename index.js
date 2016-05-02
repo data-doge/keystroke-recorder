@@ -29,6 +29,7 @@ class KeystrokeRecorder {
   replay (selector) {
     var $element = $(selector)
     $element.val('')
+    var json = this.json.slice()
     var replayChars = []
     return new Promise((resolve, reject) => {
       var timer = new Tock({
@@ -36,8 +37,8 @@ class KeystrokeRecorder {
         interval: 10,
         callback: () => {
           var currentMs = this.timeElapsed() - timer.lap()
-          if (this.json[0] && currentMs > this.json[0].ms) {
-            let obj = this.json.shift()
+          if (json[0] && currentMs > json[0].ms) {
+            let obj = json.shift()
             switch(obj.key) {
               case 'Backspace': replayChars.pop(); break
               case 'Enter': replayChars.push('\n'); break
