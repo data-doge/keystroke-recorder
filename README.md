@@ -1,6 +1,6 @@
 # keystroke-recorder
 
-records keystrokes -- key, keyCode, and relative timestamp as json. please use this tool ethically, ok?
+record and playback user keystrokes. use this tool ethically -- never collect user data without their explicit knowledge + consent.
 
 ## install
 
@@ -15,14 +15,21 @@ var keystrokeRecorder = new KeystrokeRecorder({
   omittedKeys: ['Tab', 'Meta', 'Control', 'Alt', 'Shift']
 })
 
-$('#record').click(() => {
+$('#record-btn').click(() => {
   keystrokeRecorder.record()
 })
 
-$('#stop').click(() => {
+$('#stop-btn').click(() => {
   keystrokeRecorder.stop()
   console.log(keystrokeRecorder.json)
 })
+
+$('#replay-btn').click(() => {
+  keystrokeRecorder.replay('#replay-pad').then(() => {
+    console.log('done replaying!')
+  })
+})
+
 
 ```
 
@@ -44,6 +51,10 @@ $('#stop').click(() => {
 - #### `stop()`
 
   stops collecting keystroke data
+
+- #### `replay(selector)`
+
+  replays recorded keystrokes in DOM element with specified selector. returns a promise that resolves on completion.
 
 - #### `timeElapsed()`
 
