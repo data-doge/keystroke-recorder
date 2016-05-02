@@ -1,6 +1,6 @@
 {
   "name": "keystroke-recorder",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "records keystrokes with a relative timestamp",
   "main": "index.js",
   "scripts": {

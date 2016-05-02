@@ -1,12 +1,12 @@
-## keystroke-recorder
+# keystroke-recorder
 
 records keystrokes -- key, keyCode, and relative timestamp as json. please use this tool ethically, ok?
 
-### install
+## install
 
 `npm i --save keystroke-recorder`
 
-### usage
+## usage
 
 ```js
 import $ from 'jquery'
@@ -26,63 +26,65 @@ $('#stop').click(() => {
 
 ```
 
-### API
+## API
 
-#### options
+### options
 
-##### `omittedKeys`
+- #### `omittedKeys`
 
-an array of keys to be ignored during recording. _default: []_
+  an array of keys to be ignored during recording. _default: []_
 
-#### methods
 
-##### `record()`
+### methods
 
-starts collecting keystroke data as json
+- #### `record()`
 
-##### `stop()`
+  starts collecting keystroke data as json
 
-stops collecting keystroke data
+- #### `stop()`
 
-##### `timeElapsed()`
+  stops collecting keystroke data
 
-return milliseconds since recording started
+- #### `timeElapsed()`
 
-#### properties
+  return milliseconds since recording started
 
-##### `json`
 
-returns json data for last keystroke recording
+### properties
 
-```json
-[
-    {
-        keyCode: 65,
-        key: "a",
-        ms: 562
-    },
-    {
-        keyCode: 83,
-        key: "s",
-        ms: 771
-    },
-    {
-        keyCode: 68,
-        key: "d",
-        ms: 998
-    },
-    {
-        keyCode: 70,
-        key: "f",
-        ms: 1642
-    }
-]
-```
+- #### `json`
 
-##### `startTime`
+  returns json data for last keystroke recording
 
-time that last recording started at
+  ```json
+  [
+      {
+          keyCode: 65,
+          key: "a",
+          ms: 562
+      },
+      {
+          keyCode: 83,
+          key: "s",
+          ms: 771
+      },
+      {
+          keyCode: 68,
+          key: "d",
+          ms: 998
+      },
+      {
+          keyCode: 70,
+          key: "f",
+          ms: 1642
+      }
+  ]
+  ```
 
-##### `recording`
+- #### `startTime`
 
-boolean indicating whether `keystrokeRecorder` is recording or not
+  time that last recording started at
+
+- #### `recording`
+
+  boolean indicating whether `keystrokeRecorder` is recording or not
