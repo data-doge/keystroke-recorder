@@ -55,7 +55,7 @@ class KeystrokeRecorder {
   }
 
   timeElapsed () {
-    return Date.now() - this.startTime
+    return this.startTime ? Date.now() - this.startTime : 0
   }
 
   stop () {
