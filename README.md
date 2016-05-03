@@ -56,6 +56,10 @@ $('#replay-btn').click(() => {
 
   replays recorded keystrokes in DOM element with specified selector. returns a promise that resolves on completion.
 
+- #### `play(selector, json)`
+
+   plays given json keystroke data in DOM element with specified selector. returns a promise that resolves on completion.
+
 - #### `timeElapsed()`
 
   return milliseconds since recording started
