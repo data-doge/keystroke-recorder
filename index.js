@@ -26,10 +26,10 @@ class KeystrokeRecorder {
     })
   }
 
-  replay (selector) {
+  play (selector, json) {
     var $element = $(selector)
-    $element.val('')
-    var json = this.json.slice()
+    $element.isInput = includes(['INPUT', 'TEXTAREA'], $element[0].tagName)
+    $element.isInput ? $element.val('') : $element.text('')
     var replayChars = []
     return new Promise((resolve, reject) => {
       var timer = new Tock({
@@ -44,7 +44,7 @@ class KeystrokeRecorder {
               case 'Enter': replayChars.push('\n'); break
               default: replayChars.push(obj.key); break
             }
-            $element.val(replayChars.join(''))
+            $element.isInput ? $element.val(replayChars.join('')) : $element.text(replayChars.join(''))
           }
         },
         complete: resolve
@@ -52,6 +52,11 @@ class KeystrokeRecorder {
 
       timer.start(this.timeElapsed())
     })
+  }
+
+  replay (selector) {
+    var json = this.json.slice()
+    return this.play(selector, json)
   }
 
   timeElapsed () {
