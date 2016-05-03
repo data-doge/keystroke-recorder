@@ -2,6 +2,7 @@ import $ from 'jquery'
 import includes from 'lodash.includes'
 import loop from 'raf-loop'
 import Tock from 'tocktimer'
+import last from 'lodash.last'
 
 class KeystrokeRecorder {
 
@@ -26,10 +27,11 @@ class KeystrokeRecorder {
     })
   }
 
-  play (selector, json) {
+  replay (selector) {
     var $element = $(selector)
     this._renderText($element, '')
-    var replayChars = []
+
+    var json = this.json.slice(), replayChars = []
     return new Promise((resolve, reject) => {
       var timer = new Tock({
         countdown: true,
@@ -53,13 +55,18 @@ class KeystrokeRecorder {
     })
   }
 
-  replay (selector) {
-    var json = this.json.slice()
-    return this.play(selector, json)
+  load (json) {
+    this.stop()
+    this.json = json
+    this.startTime = null
   }
 
   timeElapsed () {
-    return this.startTime ? Date.now() - this.startTime : 0
+    if (this.recording) {
+      return this.startTime ? Date.now() - this.startTime : 0
+    } else {
+      return last(this.json).ms
+    }
   }
 
   stop () {
